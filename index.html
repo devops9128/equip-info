@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart Product Warranty Management System - Track your product warranty information and never miss warranty periods">
+    <meta name="keywords" content="product management,warranty management,product information,warranty period">
+    <meta name="author" content="Product Manager">
+    <title>Product Information Management Tool</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.svg">
+    <link rel="mask-icon" href="favicon.svg" color="#4CAF50">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>🛡️ Product Warranty Management System</h1>
+                <p>Smart management of your product warranty information - never miss a warranty again</p>
+            </div>
+            
+            <div class="theme-selector">
+            <label for="themeSelect">🎨 Select Theme</label>
+            <select id="themeSelect" class="theme-select" aria-label="Select application theme">
+                <option value="nature">🌿 Nature Green</option>
+                <option value="purple">💜 Elegant Purple</option>
+                <option value="orange">🧡 Vibrant Orange</option>
+                <option value="pink">💗 Warm Pink</option>
+            </select>
+        </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Add Product Form -->
+            <section class="add-product-section" aria-labelledby="add-product-heading">
+                <h2 id="add-product-heading"><i class="fas fa-plus-circle" aria-hidden="true"></i> Add New Product</h2>
+                <form id="productForm" class="product-form" role="form" aria-label="Add new product form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="productName">Product Name *</label>
+                            <input type="text" id="productName" name="productName" required placeholder="Enter the complete product name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <select id="brand" name="brand">
+                                <option value="">Select Brand</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Samsung">Samsung</option>
+                                <option value="Acer">Acer</option>
+                                <option value="Huawei">Huawei</option>
+                                <option value="Xiaomi">Xiaomi</option>
+                                <option value="Sony">Sony</option>
+                                <option value="Dell">Dell</option>
+                                <option value="Lenovo">Lenovo</option>
+                                <option value="Logitech">Logitech</option>
+                                <option value="Kingston">Kingston</option>
+                                <option value="Seagate">Seagate</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="model">Model</label>
+                            <input type="text" id="model" name="model" placeholder="Model or specification">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="serialNumber">Serial Number</label>
+                            <input type="text" id="serialNumber" name="serialNumber" placeholder="Product serial number/SN">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" name="category">
+                                <option value="">Select Category</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Home Appliances">Home Appliances</option>
+                                <option value="Digital Devices">Digital Devices</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="purchaseDate">Purchase Date *</label>
+                            <input type="date" id="purchaseDate" name="purchaseDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="warrantyPeriod">Warranty Period (Months)</label>
+                            <input type="number" id="warrantyPeriod" name="warrantyPeriod" min="0" placeholder="12">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="price">Purchase Price</label>
+                            <div class="input-with-prefix">
+                                <span class="input-prefix">RM</span>
+                                <input type="number" id="price" name="price" step="0.01" min="0" class="form-input with-prefix" placeholder="0.00">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="store">Purchase Store</label>
+                            <select id="store" name="store">
+                                <option value="">Select Store</option>
+                                <option value="shopee">Shopee</option>
+                                <option value="lazada">Lazada</option>
+                                <option value="harveynorman">Harvey Norman</option>
+                                <option value="porpular">Porpular</option>
+                                <option value="ph&co">Ph&Co</option>
+                                <option value="bestbuy">BestBuy</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="Product description, serial number, and other information..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Product
+                    </button>
+                </form>
+            </section>
+
+            <!-- Search and Filter -->
+            <section class="search-section" aria-labelledby="search-heading">
+                <h2 id="search-heading" class="sr-only">Search and filter products</h2>
+                <div class="search-controls" role="search">
+                    <div class="search-box">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="text" id="searchInput" placeholder="Search product name, brand, or model..." aria-label="Search products">
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <label for="categoryFilter" class="sr-only">Filter by category</label>
+                        <select id="categoryFilter" aria-label="Filter products by category">
+                            <option value="">All Categories</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Home Appliances">Home Appliances</option>
+                            <option value="Digital Devices">Digital Devices</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        
+                        <label for="warrantyFilter" class="sr-only">Filter by warranty status</label>
+                        <select id="warrantyFilter" aria-label="Filter products by warranty status">
+                            <option value="">All Warranty Status</option>
+                            <option value="valid">Warranty Valid</option>
+                            <option value="expired">Warranty Expired</option>
+                            <option value="expiring">Expiring Soon</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product List -->
+            <section id="main-content" class="products-section" aria-labelledby="products-heading">
+                <div class="section-header">
+                    <h2 id="products-heading"><i class="fas fa-list" aria-hidden="true"></i> Product List</h2>
+                    <div class="header-actions">
+                        <div class="stats">
+                            <span id="totalProducts">Total: 0 products</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="exportBtn" class="btn btn-outline" title="Export data">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                            <button id="importBtn" class="btn btn-outline" title="Import data" onclick="document.getElementById('importFile').click()">
+                                <i class="fas fa-upload"></i> Import
+                            </button>
+                            <button id="clearDataBtn" class="btn btn-danger" title="Clear all data">
+                                 <i class="fas fa-trash-alt"></i> Clear Data
+                             </button>
+                         </div>
+                     </div>
+                     <input type="file" id="importFile" accept=".json" style="display: none;">
+                 </div>
+                
+                <div id="productsList" class="products-grid" role="grid" aria-label="Product information grid">
+                    <!-- Product cards will be dynamically generated by JavaScript -->
+                </div>
+                
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <i class="fas fa-box-open"></i>
+                    <h3>No product records</h3>
+                    <p>Click "Add New Product" above to start recording your product information</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="editModal" class="modal" role="dialog" aria-labelledby="edit-modal-title" aria-hidden="true">
+        <div class="modal-content edit-modal">
+            <div class="modal-header">
+                <div class="modal-title-section">
+                    <h3 id="edit-modal-title"><i class="fas fa-edit"></i> Edit Product Information</h3>
+                    <p class="modal-subtitle">Modify product details and warranty status</p>
+                </div>
+                <button class="close-btn" onclick="closeEditModal()" title="Close window" aria-label="Close edit dialog">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="editProductForm" class="product-form enhanced-form" role="form" aria-label="Edit product information form">
+                    <input type="hidden" id="editProductId">
+                    
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-info-circle"></i> Basic Information
+                        </h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="editProductName">Product Name *</label>
+                                <input type="text" id="editProductName" required class="form-input">
+                                <div class="field-hint">Enter the complete product name</div>
+                                <div class="error-message" id="editProductNameError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="editBrand">Brand</label>
+                                <select id="editBrand" class="form-select">
+                                    <option value="">Select Brand</option>
+                                    <option value="Apple">Apple</option>
+                                    <option value="Samsung">Samsung</option>
+                                    <option value="Acer">Acer</option>
+                                    <option value="Huawei">Huawei</option>
+                                    <option value="Xiaomi">Xiaomi</option>
+                                    <option value="Sony">Sony</option>
+                                    <option value="Dell">Dell</option>
+                                    <option value="Lenovo">Lenovo</option>
+                                    <option value="Logitech">Logitech</option>
+                                    <option value="Kingston">Kingston</option>
+                                    <option value="Seagate">Seagate</option>
+                                </select>
+                                <div class="field-hint">Select brand name</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="editModel">Model</label>
+                                <input type="text" id="editModel" class="form-input">
+                                <div class="field-hint">Product specific model</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="editSerialNumber">Serial Number</label>
+                                <input type="text" id="editSerialNumber" class="form-input" placeholder="Product serial number/SN">
+                                <div class="field-hint">Product unique serial number identifier</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="editCategory">Category</label>
+                                <select id="editCategory" class="form-select">
+                                    <option value="">Select Category</option>
+                                    <option value="Electronics">📱 Electronics</option>
+                                    <option value="Home Appliances">🏠 Home Appliances</option>
+                                    <option value="Digital Devices">💻 Digital Devices</option>
+                                    <option value="Furniture">🪑 Furniture</option>
+                                    <option value="Clothing">👕 Clothing</option>
+                                    <option value="Sports Equipment">⚽ Sports Equipment</option>
+                                    <option value="Others">📦 Others</option>
+                                </select>
+                                <div class="field-hint">Select product category</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Purchase Information Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-shopping-cart"></i> Purchase Information
+                        </h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="editPurchaseDate">Purchase Date *</label>
+                                <input type="date" id="editPurchaseDate" required class="form-input">
+                                <div class="field-hint">Select product purchase date</div>
+                                <div class="error-message" id="editPurchaseDateError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="editPrice">Purchase Price</label>
+                                <div class="input-with-prefix">
+                                    <span class="input-prefix">RM</span>
+                                    <input type="number" id="editPrice" step="0.01" min="0" class="form-input with-prefix" placeholder="0.00">
+                                </div>
+                                <div class="field-hint">Enter purchase price</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="editStore">Purchase Store</label>
+                                <select id="editStore" class="form-select">
+                                    <option value="">Select Store</option>
+                                    <option value="shopee">Shopee</option>
+                                    <option value="lazada">Lazada</option>
+                                    <option value="harveynorman">Harvey Norman</option>
+                                    <option value="porpular">Porpular</option>
+                                    <option value="ph&co">Ph&Co</option>
+                                    <option value="bestbuy">BestBuy</option>
+                                </select>
+                                <div class="field-hint">Purchase store or platform</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Warranty Information Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-shield-alt"></i> Warranty Information
+                        </h4>
+                        <div class="warranty-section">
+                            <div class="form-group">
+                                <label for="editWarrantyPeriod">Warranty Period (Months)</label>
+                                <div class="warranty-input-group">
+                                    <input type="number" id="editWarrantyPeriod" min="0" max="120" class="form-input" placeholder="12">
+                                    <div class="warranty-presets">
+                                        <button type="button" class="preset-btn" onclick="setWarrantyPeriod(12)">1 Year</button>
+                                        <button type="button" class="preset-btn" onclick="setWarrantyPeriod(24)">2 Years</button>
+                                        <button type="button" class="preset-btn" onclick="setWarrantyPeriod(36)">3 Years</button>
+                                    </div>
+                                </div>
+                                <div class="field-hint">Set product warranty period</div>
+                            </div>
+                            
+                            <div class="warranty-info" id="editWarrantyInfo">
+                                <!-- Warranty information will be dynamically displayed via JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notes Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-sticky-note"></i> Notes Information
+                        </h4>
+                        <div class="form-group full-width">
+                            <label for="editNotes">Notes</label>
+                            <textarea id="editNotes" rows="4" class="form-textarea" placeholder="Record product serial number, special instructions, repair records, and other information..."></textarea>
+                            <div class="field-hint">Optional: Add additional product information</div>
+                            <div class="char-counter">
+                                <span id="editNotesCounter">0</span>/500 characters
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeEditModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="submit" form="editProductForm" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content delete-modal">
+            <div class="modal-header delete-header">
+                <div class="delete-header-content">
+                    <div class="warning-icon-container">
+                        <div class="warning-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                    <div class="modal-title-section">
+                        <h3>Confirm Delete</h3>
+                        <p class="modal-subtitle">This action will permanently delete the product record</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-body delete-body">
+                <div class="delete-warning">
+                    <div class="warning-content">
+                        <h4>You are about to delete this product record</h4>
+                        <p class="warning-text">After deletion, all product information cannot be recovered, including:</p>
+                        <ul class="warning-list">
+                            <li><i class="fas fa-info-circle"></i> Basic product information</li>
+                            <li><i class="fas fa-calendar-alt"></i> Purchase and warranty records</li>
+                            <li><i class="fas fa-sticky-note"></i> Notes and additional information</li>
+                        </ul>
+                    </div>
+                    <div class="confirmation-note">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Please confirm that you really want to perform this action</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions delete-actions">
+                <button type="button" class="btn btn-secondary btn-cancel" onclick="closeDeleteModal()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Cancel</span>
+                </button>
+                <button type="button" class="btn btn-danger btn-delete" onclick="confirmDelete()">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Confirm Delete</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase configuration and initialization -->
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
